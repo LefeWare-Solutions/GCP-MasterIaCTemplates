@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "lws-dev-common-bucket"
+    bucket    = "lws-dev-common-bucket"
     prefix    = "global/networking.state"
   }
 
