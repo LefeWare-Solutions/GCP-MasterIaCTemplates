@@ -13,9 +13,13 @@ At LefeWare Solutions, we strongly believe that IaC should ALWAYS be used for de
 ---
 # Which IAC language should I use?
 
-## CloudFormation
 
 ## Terraform
+terraform init
+terraform plan -var-file="dev-variables.tfvars"
+terraform apply -var-file="dev-variables.tfvars"
+
+terraform apply -var-file="dev-variables.tfvars" -destroy
 
 ---
 # Publishing Templates

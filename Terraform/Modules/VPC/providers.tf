@@ -15,10 +15,6 @@ terraform {
 }
 
 provider "google" {
-  project = "lefewaresolutions-poc"
-  region  = "us-west1"
-}
-
-resource "google_compute_network" "vpc_network" {
-  name = "terraform-network"
+  project = var.project_id
+  region  = var.region
 }
