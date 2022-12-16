@@ -39,7 +39,7 @@ jobs:
       working-directory: ./Terraform/QuickStartDeployments/EKSCluster
       run: terraform init
 
-    # Checks that all Terraform configuration files adhere to a canonical format
+    # Checks that all Terraform configuration files adhere to a canonical format.
     - name: Terraform Format
       working-directory: ./Terraform/QuickStartDeployments/EKSCluster
       run: terraform fmt -check
