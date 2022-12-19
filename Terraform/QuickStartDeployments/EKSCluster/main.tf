@@ -6,10 +6,10 @@ terraform {
     }
   }
 
-  backend "gcs" {
-    bucket  = "lws-dev-common-bucket"
-    prefix  = "global/networking.state"
-  }
+  # backend "gcs" {
+  #   bucket  = "lws-dev-common-bucket"
+  #   prefix  = "global/networking.state"
+  # }
 
   required_version = ">= 0.14.9"
 }
