@@ -2,14 +2,13 @@ terraform {
   required_providers {
     google = {
       source = "hashicorp/google"
-      version = "3.5.0"
+      version = "3.89.0"
     }
   }
 
   backend "gcs" {
     bucket  = "lws-dev-common-bucket"
     prefix  = "global/networking.state"
-    impersonate_service_account = "lws-d-iac-sa@lefewaresolutions-poc.iam.gserviceaccount.com"
   }
 
   required_version = ">= 0.14.9"
