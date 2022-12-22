@@ -9,6 +9,7 @@ terraform {
   backend "gcs" {
     bucket  = "lws-dev-common-bucket"
     prefix  = "global/networking.state"
+    impersonate_service_account = "lws-d-iac-sa@lefewaresolutions-poc.iam.gserviceaccount.com"
   }
 
   required_version = ">= 0.14.9"
