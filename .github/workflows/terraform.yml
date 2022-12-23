@@ -49,7 +49,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       working-directory: ./Terraform/QuickStartDeployments/EKSCluster
-      run: terraform plan
+      run: terraform plan -var-file="dev-variables.tfvars"
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
@@ -58,6 +58,6 @@ jobs:
     - name: Terraform Apply
       working-directory: ./Terraform/QuickStartDeployments/EKSCluster
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve -var-file="dev-variables.tfvars"
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
