@@ -16,6 +16,7 @@ jobs:
 
   prd-deployment:
     uses: LefeWareSolutions/GoogleCloudPlatformIaCTemplates/.github/workflows/deploy-terraform.yml@main
+    needs: dev-depoyment
     with:
       environment: prd
     secrets:
