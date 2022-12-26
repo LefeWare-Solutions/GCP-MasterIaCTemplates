@@ -1,3 +1,14 @@
+variable "network_name" {
+  type  = string
+}
+
+variable "subnet_name" {
+  type  = string
+}
+
+variable "service_account_id" {
+  
+}
 variable "gke_username" {
   default     = ""
   description = "gke username"

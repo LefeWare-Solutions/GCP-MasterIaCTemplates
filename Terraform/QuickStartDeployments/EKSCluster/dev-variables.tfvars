@@ -1,2 +1,3 @@
+env_name = "dev"
+region= "uswest1" 
 project_id = "lefewaresolutions-poc"
-vpc_name = "lws-d-uswest1-common-vpc" 

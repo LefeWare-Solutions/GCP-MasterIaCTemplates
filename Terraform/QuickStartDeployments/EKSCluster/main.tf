@@ -20,10 +20,20 @@ provider "google" {
 }
 
 
+#Custom Created Module in this repo
 module "vpc" {
   source  = "../../Modules/VPC"
 
-  project_id = var.project_id
-  region     = "us-west1"
-  vpc_name   = var.vpc_name
+  vpc_name   = "lws-${var.env_name}-common-vpc" 
+  subnets    = {
+    "EKSSubnet" ={
+      name = "lws-${var.env_name}-uswest1-eks-subnet" 
+      ip_cidr_range = ""
+      region = "uswest1"
+      private_ip_google_access = true
+    }
+  }
+
 }
+
+#Preconfigured Terraform Google Module

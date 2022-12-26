@@ -7,57 +7,16 @@ on:
   pull_request:
 
 jobs:
-  terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
+  dev-deployment:
+    uses: LefeWareSolutions/GoogleCloudPlatformIaCTemplates/.github/workflows/deploy-terraform.yml@main
+    with:
+      environment: dev
+    secrets:
+      GCP_SA_KEY : ${{ secrets.GCP_SA_KEY }}
 
-    steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-
-    # Authenticates and authorizes GitHub Actions Workflows to Google Cloud via Workload Identity Federation
-    # - id: 'auth'
-    #   name: 'Authenticate to Google Cloud'
-    #   uses: 'google-github-actions/auth@v0.4.0'
-    #   with:
-    #     workload_identity_provider: 'projects/385050593732/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-    #     service_account: 'lws-d-iac-sa@lefewaresolutions-poc.iam.gserviceaccount.com'
-
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      working-directory: ./Terraform/QuickStartDeployments/EKSCluster
-      run: terraform init
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-
-    #Checks that all Terraform configuration files adhere to a canonical format.
-    # - name: Terraform Format
-    #   working-directory: ./Terraform/QuickStartDeployments/EKSCluster
-    #   run: terraform fmt -check
-
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      working-directory: ./Terraform/QuickStartDeployments/EKSCluster
-      run: terraform plan -var-file="dev-variables.tfvars"
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-
-      # On push to main, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    - name: Terraform Apply
-      working-directory: ./Terraform/QuickStartDeployments/EKSCluster
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve -var-file="dev-variables.tfvars"
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+  prd-deployment:
+    uses: LefeWareSolutions/GoogleCloudPlatformIaCTemplates/.github/workflows/deploy-terraform.yml@main
+    with:
+      environment: prd
+    secrets:
+      GCP_SA_KEY : ${{ secrets.GCP_SA_KEY }}
