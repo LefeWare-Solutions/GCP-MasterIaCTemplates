@@ -11,8 +11,7 @@ jobs:
     uses: LefeWareSolutions/GoogleCloudPlatformIaCTemplates/.github/workflows/deploy-terraform.yml@main
     with:
       environment: dev
-    secrets:
-      GCP_SA_KEY : ${{ secrets.GCP_SA_KEY }}
+    secrets: inherit
 
   prd-deployment:
     uses: LefeWareSolutions/GoogleCloudPlatformIaCTemplates/.github/workflows/deploy-terraform.yml@main

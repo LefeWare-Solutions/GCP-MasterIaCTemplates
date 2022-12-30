@@ -6,9 +6,6 @@ on:
       environment:
         required: true
         type: string
-    secrets:
-      GCP_SA_KEY:
-        required: true
 
 jobs:
   terraform:
