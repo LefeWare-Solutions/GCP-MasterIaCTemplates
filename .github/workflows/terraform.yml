@@ -18,5 +18,4 @@ jobs:
     needs: dev-deployment
     with:
       environment: prd
-    secrets:
-      GCP_SA_KEY : ${{ secrets.GCP_SA_KEY }}
+    secrets: inherit
