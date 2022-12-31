@@ -11,7 +11,3 @@ variable "region" {
   type    = string
   default = "us-west1"
 }
-
-variable "vpc_name" {
-  type = string
-}
