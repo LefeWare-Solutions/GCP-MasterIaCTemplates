@@ -27,9 +27,9 @@ module "vpc" {
   vpc_name   = "lws-${var.env_name}-common-vpc" 
   subnets    = {
     "EKSSubnet" ={
-      name = "lws-${var.env_name}-uswest1-eks-subnet" 
-      ip_cidr_range = ""
-      region = "uswest1"
+      subnet_name = "lws-${var.env_name}-uswest1-eks-subnet" 
+      subnet_ip_range = "10.0.0.0/24"
+      subnet_region = "uswest1"
       private_ip_google_access = true
     }
   }
