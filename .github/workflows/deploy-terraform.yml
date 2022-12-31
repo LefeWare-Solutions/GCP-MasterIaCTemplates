@@ -37,7 +37,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       working-directory: ./Terraform/QuickStartDeployments/EKSCluster
-      run: terraform plan -var-file="dev-variables.tfvars"
+      run: terraform plan  -lock=false -var-file="dev-variables.tfvars"
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
